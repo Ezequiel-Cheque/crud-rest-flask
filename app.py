@@ -8,7 +8,7 @@ from products import products
 def hello():
     return "Hello world from flask"
 
-@app.route('/products')
+@app.route('/products', methods=["GET"])
 def getProducts():
     return jsonify({"products": products, "message": "Product's list" })
 
@@ -24,7 +24,7 @@ def addProduct():
     new_product = {
         "name": request.json['name'],
         "price": request.json['price'],
-        "quantity": request.json['name']
+        "quantity": request.json['quantity']
     }
     products.append(new_product)
     return jsonify({ "message": "Product Add Successfully", "products": products })
